@@ -16,13 +16,41 @@ function createMarkers(response) {
 
     // Loop through the earthquakes array
     earthquakes.forEach(earthquake => {
-        var marker = L.circleMarker([earthquake.geometry.coordinates[1], earthquake.geometry.coordinates[0]]).bindPopup("<h4>" + "Location: " + earthquake.properties.place + "<br>" + "Magnitude: " + earthquake.properties.mag);
+        var marker = L.circleMarker([earthquake.geometry.coordinates[1], earthquake.geometry.coordinates[0]], {
+            color: markerColor(earthquake.properties.mag),
+            fillColor: markerColor(earthquake.properties.mag),
+            fillOpacity: 0.5,
+            radius: markerSize(earthquake.properties.mag)
+        }).bindPopup("<h4>" + "Location: " + earthquake.properties.place + "<br>" + "Magnitude: " + earthquake.properties.mag + "<br>" + "Time: " + new Date(earthquake.properties.time));
         // Add coordinates to the markers array
         markers.push(marker);
     })
 
     // Create a layer group that's made from the markers array, and pass it to the createMap function
     createMap(L.layerGroup(markers));
+}
+
+
+function markerSize(magnitude) {
+    return Math.sqrt(magnitude) * 10;
+}
+
+
+function markerColor(magnitude){
+    switch(true){
+        case (magnitude<1):
+            return "chartreuse";
+        case (magnitude<2):
+            return "greenyellow";
+        case (magnitude<3):
+            return "gold";
+        case (magnitude<4):
+            return "DarkOrange";
+        case (magnitude<5):
+            return "Peru";
+        default:
+            return "red";
+    };
 }
 
 
@@ -35,7 +63,7 @@ function createMap(markers) {
         accessToken: API_KEY
       });
     
-    // Tile layer for dark map background
+    // Dark tile layer for map background
     var darkmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
