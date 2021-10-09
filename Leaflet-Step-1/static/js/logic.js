@@ -58,19 +58,10 @@ function createMap(markers) {
         id: "mapbox.satellite",
         accessToken: API_KEY
       });
-    
-    // Dark tile layer for map background
-    var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-        maxZoom: 18,
-        id: "dark-v10",
-        accessToken: API_KEY
-    });
 
     // Create a baseMaps object to hold the tile layers
     var baseMaps = {
-        "Satellite Map": satellitemap,
-        "Dark Map": darkmap
+        "Satellite Map": satellitemap
     };
 
     // Create an overlayMaps object to hold the markers layer.
