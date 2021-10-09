@@ -6,7 +6,5 @@ Visualize an earthquake dataset from the USGS using Leaflet to create a map that
 
 ### Level 1 : Basic Visualization
 - Earthquakes with higher magnitudes will appear larger and earthquakes with greather depth will appear darker in color.
-<br>
 - Clicking on the earthquake markers will popup additional information regarding location, magnitude, depth, and time of earthquake.
-<br>
 - A legend in included in the bottom right to provide context for the map.
