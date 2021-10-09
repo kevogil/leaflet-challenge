@@ -1,4 +1,4 @@
-### Visualizing Data with Leaflet
+# Visualizing Data with Leaflet
 
 ### Objective
 Visualize an earthquake dataset from the USGS using Leaflet to create a map that plots all earthquakes in the past month based on their longitude and latitude.
@@ -12,7 +12,7 @@ Visualize an earthquake dataset from the USGS using Leaflet to create a map that
 <p align="center">
   <img src="https://github.com/kevogil/leaflet-challenge/blob/main/Images/Leaflet-Step-1.png">
 </p>
-<br><br>
+<br><hr><br>
 
 ### Level 2 : More Data
 Plot a second data set on your map to illustrate the relationship between tectonic plates and seismic activity.
