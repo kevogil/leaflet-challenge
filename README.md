@@ -10,7 +10,7 @@ Visualize an earthquake dataset from the USGS using Leaflet to create a map that
 - A legend in included in the bottom right to provide context for the map.
 <br>
 <p align="center">
-  <img src="https://github.com/Jiuhe2020/leaflet-challenge/blob/master/images/Level-2.png">
+  <img src="https://github.com/kevogil/leaflet-challenge/blob/main/Images/Leaflet-Step-1.png">
 </p>
 <br><br>
 
@@ -21,5 +21,5 @@ Plot a second data set on your map to illustrate the relationship between tecton
 - Toggle between the base maps and datasets through the use of a layer control
 <br>
 <p align="center">
-  <img src="https://github.com/Jiuhe2020/leaflet-challenge/blob/master/images/Level-2.png">
+  <img src="https://github.com/kevogil/leaflet-challenge/blob/main/Images/Leaflet-Step-2.png">
 </p>
