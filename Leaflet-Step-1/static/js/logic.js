@@ -17,11 +17,11 @@ function createMarkers(response) {
     // Loop through the earthquakes array
     earthquakes.forEach(earthquake => {
         var marker = L.circleMarker([earthquake.geometry.coordinates[1], earthquake.geometry.coordinates[0]], {
-            color: markerColor(earthquake.properties.mag),
-            fillColor: markerColor(earthquake.properties.mag),
-            fillOpacity: 0.5,
-            radius: markerSize(earthquake.properties.mag)
-        }).bindPopup("<h4>" + "Location: " + earthquake.properties.place + "<br>" + "Magnitude: " + earthquake.properties.mag + "<br>" + "Time: " + new Date(earthquake.properties.time));
+            color: "black",
+            fillColor: markerColor(earthquake.geometry.coordinates[2]),
+            fillOpacity: 0.9,
+            radius: earthquake.properties.mag * 2
+        }).bindPopup("<h4>" + "Location: " + earthquake.properties.place + "<br>" + "Magnitude: " + earthquake.properties.mag + "<br>" + "Depth: " + earthquake.geometry.coordinates[2] + "<br>" + "Time: " + new Date(earthquake.properties.time));
         // Add coordinates to the markers array
         markers.push(marker);
     })
@@ -31,22 +31,17 @@ function createMarkers(response) {
 }
 
 
-function markerSize(magnitude) {
-    return Math.sqrt(magnitude) * 10;
-}
-
-
-function markerColor(magnitude){
+function markerColor(depth){
     switch(true){
-        case (magnitude<1):
+        case (depth<10):
             return "chartreuse";
-        case (magnitude<2):
+        case (depth<30):
             return "greenyellow";
-        case (magnitude<3):
+        case (depth<50):
             return "gold";
-        case (magnitude<4):
+        case (depth<70):
             return "DarkOrange";
-        case (magnitude<5):
+        case (depth<92):
             return "Peru";
         default:
             return "red";
