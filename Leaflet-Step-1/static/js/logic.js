@@ -20,8 +20,9 @@ function createMarkers(response) {
             color: "black",
             fillColor: markerColor(earthquake.geometry.coordinates[2]),
             fillOpacity: 0.9,
-            radius: earthquake.properties.mag * 2
-        }).bindPopup("<h4>" + "Location: " + earthquake.properties.place + "<br>" + "Magnitude: " + earthquake.properties.mag + "<br>" + "Depth: " + earthquake.geometry.coordinates[2] + "<br>" + "Time: " + new Date(earthquake.properties.time));
+            radius: earthquake.properties.mag * 3
+        }).bindPopup("<b>Location: </b>" + earthquake.properties.place + "<br>" + "<b>Magnitude: </b>" + earthquake.properties.mag + "<br>" + "<b>Depth: </b>" + earthquake.geometry.coordinates[2] + "<br>" + "<b>Time: </b>" + new Date(earthquake.properties.time));
+        
         // Add coordinates to the markers array
         markers.push(marker);
     })
@@ -40,11 +41,11 @@ function markerColor(depth){
         case (depth<50):
             return "gold";
         case (depth<70):
-            return "DarkOrange";
-        case (depth<92):
-            return "Peru";
-        default:
+            return "darkorange";
+        case (depth<90):
             return "red";
+        default:
+            return "crimson";
     };
 }
 
@@ -80,10 +81,31 @@ function createMap(markers) {
     // Create the map object with options.
     var myMap = L.map("map", {
         center: [0, 0],
-        zoom: 2,
+        zoom: 3,
         layers: [satellitemap, markers]
     });
 
     // Create a layer control, and pass it baseMaps and overlayMaps. Add the layer control to the map
     L.control.layers(baseMaps, overlayMaps).addTo(myMap);
+
+
+    // Set up map legend
+    var legend = L.control({position: "bottomright"});
+
+    legend.onAdd = function() {
+      var div = L.DomUtil.create("div", "info legend"),
+      depth = [-10, 10, 30, 50, 70, 90];
+      
+      div.innerHTML += "<h3 style='text-align: center'>Depth</h3>"
+  
+      for (var i =0; i < depth.length; i++) {
+        div.innerHTML += 
+        '<i style="background:' + markerColor(depth[i] + 1) + '"></i> ' +
+            depth[i] + (depth[i + 1] ? '&ndash;' + depth[i + 1] + '<br>' : '+');
+        }
+        return div;
+      };
+
+      // Add legend to map
+      legend.addTo(myMap);
 }
