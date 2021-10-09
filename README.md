@@ -13,7 +13,6 @@ Visualize an earthquake dataset from the USGS using Leaflet to create a map that
   <img src="https://github.com/kevogil/leaflet-challenge/blob/main/Images/Leaflet-Step-1.png">
 </p>
 <br><hr><br>
-
 ### Level 2 : More Data
 Plot a second data set on your map to illustrate the relationship between tectonic plates and seismic activity.
 - Add multiple base maps to choose from (satellite, dark).
